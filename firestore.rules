@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── inquiries ──────────────────────────────────────────────────────────
+    // Anyone can CREATE (public contact form).
+    // Nobody can READ/UPDATE/DELETE via client SDK — admin uses Admin SDK only.
+    match /inquiries/{inquiryId} {
+      allow create: if request.resource.data.keys().hasAll([
+        'fullName', 'email', 'projectType', 'budget', 'status', 'createdAt'
+      ]);
+      allow read, update, delete: if false;
+    }
+
+    // ── quotes ─────────────────────────────────────────────────────────────
+    // No client-side access at all. Admin SDK bypasses these rules.
+    match /quotes/{quoteId} {
+      allow read, write: if false;
+    }
+
+    // ── catch-all: deny everything else ────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

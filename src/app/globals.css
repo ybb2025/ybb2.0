@@ -1,0 +1,425 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika:wght@400;700&family=DM+Sans:wght@400;500;700&family=Great+Vibes&display=swap');
+@import "tailwindcss";
+
+/* ── Tailwind v4: class-based dark mode (.dark class on <html>) ── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─────────────────────────────────────────────────────
+   LIGHT MODE  (default)
+───────────────────────────────────────────────────── */
+:root {
+  --background: #F5F5F7;
+  /* Apple Structural Background */
+  --foreground: #1D1D1F;
+
+  /* ── Surfaces ── */
+  --c-surface-nav: rgba(255, 255, 255, 0.82);
+  /* Apple glass on white */
+  --c-surface-high: rgba(255, 255, 255, 0.95);
+  /* Cards */
+  --c-surface-mid: rgba(255, 255, 255, 0.60);
+  --c-surface-white: #FFFFFF;
+  /* Pure white for top elements */
+  --c-surface-subtle: #FBFBFD;
+  /* Section alternating / hero panel */
+
+  /* ── Borders ── */
+  --c-border-strong: rgba(210, 210, 215, 0.85);
+  /* #D2D2D7 equivalent */
+  --c-border-primary: rgba(229, 229, 234, 0.85);
+  /* #E5E5EA equivalent */
+  --c-border-soft: rgba(229, 229, 234, 0.50);
+  --c-border-subtle: rgba(229, 229, 234, 0.35);
+
+  /* ── Shadows ── */
+  --c-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --c-shadow-card: 0 1px 0 0 rgba(255, 255, 255, 1) inset, 0 1px 3px rgba(0, 0, 0, 0.03), 0 4px 16px rgba(0, 0, 0, 0.02);
+  --c-shadow-card-h: 0 1px 0 0 rgba(255, 255, 255, 1) inset, 0 4px 12px rgba(0, 0, 0, 0.05), 0 16px 40px rgba(37, 99, 235, 0.06);
+  --c-shadow-nav: 0 1px 0 0 rgba(255, 255, 255, 0.9) inset, 0 2px 8px rgba(0, 0, 0, 0.03), 0 8px 32px rgba(37, 99, 235, 0.05);
+  --c-shadow-panel: 0 1px 0 0 rgba(255, 255, 255, 1) inset, 0 4px 16px rgba(0, 0, 0, 0.03), 0 20px 50px rgba(37, 99, 235, 0.05);
+  --c-shadow-badge: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 1px 3px rgba(0, 0, 0, 0.04);
+  --c-shadow-btn-sec: 0 1px 0 0 rgba(255, 255, 255, 1) inset, 0 1px 4px rgba(0, 0, 0, 0.04);
+
+  /* ── Badges (Studio, status) ── */
+  --c-studio-bg: rgba(239, 246, 255, 0.85);
+  --c-studio-border: rgba(147, 197, 253, 0.5);
+  --c-studio-text: #2563EB;
+
+  --c-badge-blue-bg: rgba(239, 246, 255, 0.85);
+  --c-badge-blue-border: rgba(147, 197, 253, 0.4);
+  --c-badge-blue-text: #2563EB;
+
+  --c-badge-green-bg: rgba(240, 253, 244, 0.85);
+  --c-badge-green-border: rgba(134, 239, 172, 0.4);
+  --c-badge-green-text: #16a34a;
+
+  /* ── System Active pill ── */
+  --c-pill-bg: rgba(251, 251, 253, 0.92);
+  --c-pill-border: rgba(210, 210, 215, 0.6);
+
+  /* ── Section divider band ── */
+  --c-band-bg: rgba(251, 251, 253, 0.60);
+
+  /* ── Atmospheric orbs ── */
+  --c-orb-1: rgba(191, 219, 254, 0.30);
+  --c-orb-2: rgba(199, 210, 254, 0.25);
+
+  /* ── Text colors via var (for inline style fallbacks) ── */
+  --c-text-1: #1D1D1F;
+  --c-text-2: #48484A;
+  --c-text-3: #6E6E73;
+  --c-text-4: #8E8E93;
+
+  /* ── System Window Frame ── */
+  --c-frame-page-bg: #E5E5EA;
+  /* Apple structural neutral */
+  --c-frame-grid: rgba(0, 0, 0, 0.015);
+  --c-frame-glow: rgba(37, 99, 235, 0.05);
+  --c-frame-outer: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.2) 100%);
+  --c-frame-border: rgba(210, 210, 215, 0.70);
+  --c-frame-shadow: 0 1px 0 rgba(255, 255, 255, 0.90) inset, 0 30px 80px rgba(0, 0, 0, 0.08), 0 0 60px rgba(37, 99, 235, 0.04);
+
+  /* shadcn/ui tokens */
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border-token: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+  --radius: 0.5rem;
+}
+
+/* ─────────────────────────────────────────────────────
+   DARK MODE
+───────────────────────────────────────────────────── */
+.dark {
+  --background: #0D1117;
+  --foreground: #F1F5F9;
+
+  /* Surfaces */
+  --c-surface-nav: rgba(13, 17, 23, 0.90);
+  --c-surface-high: rgba(30, 41, 59, 0.95);
+  --c-surface-mid: rgba(13, 17, 23, 0.55);
+  --c-surface-white: #1E293B;
+  --c-surface-subtle: #1E293B;
+
+  /* Borders */
+  --c-border-strong: rgba(51, 65, 85, 0.90);
+  --c-border-primary: rgba(51, 65, 85, 0.65);
+  --c-border-soft: rgba(51, 65, 85, 0.55);
+  --c-border-subtle: rgba(51, 65, 85, 0.40);
+
+  /* Shadows — heavier, blue-tinted glow */
+  --c-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.30);
+  --c-shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset, 0 1px 3px rgba(0, 0, 0, 0.25), 0 4px 16px rgba(0, 0, 0, 0.18);
+  --c-shadow-card-h: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset, 0 4px 12px rgba(0, 0, 0, 0.30), 0 16px 40px rgba(37, 99, 235, 0.18);
+  --c-shadow-nav: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset, 0 2px 8px rgba(0, 0, 0, 0.30), 0 8px 32px rgba(37, 99, 235, 0.15);
+  --c-shadow-panel: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset, 0 4px 16px rgba(0, 0, 0, 0.25), 0 20px 50px rgba(37, 99, 235, 0.15);
+  --c-shadow-badge: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 1px 3px rgba(0, 0, 0, 0.25);
+  --c-shadow-btn-sec: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset, 0 1px 4px rgba(0, 0, 0, 0.20);
+
+  /* Badges */
+  --c-studio-bg: rgba(30, 64, 175, 0.22);
+  --c-studio-border: rgba(59, 130, 246, 0.30);
+  --c-studio-text: #60A5FA;
+
+  --c-badge-blue-bg: rgba(30, 64, 175, 0.22);
+  --c-badge-blue-border: rgba(59, 130, 246, 0.30);
+  --c-badge-blue-text: #60A5FA;
+
+  --c-badge-green-bg: rgba(6, 78, 59, 0.22);
+  --c-badge-green-border: rgba(52, 211, 153, 0.30);
+  --c-badge-green-text: #34D399;
+
+  /* System Active pill */
+  --c-pill-bg: rgba(13, 17, 23, 0.92);
+  --c-pill-border: rgba(51, 65, 85, 0.5);
+
+  /* Section divider band */
+  --c-band-bg: rgba(13, 17, 23, 0.55);
+
+  /* Atmospheric orbs — more vivid on dark */
+  --c-orb-1: rgba(37, 99, 235, 0.18);
+  --c-orb-2: rgba(79, 70, 229, 0.14);
+
+  /* Text */
+  --c-text-1: #F1F5F9;
+  --c-text-2: #CBD5E1;
+  --c-text-3: #94A3B8;
+  --c-text-4: #64748B;
+
+  /* System Window Frame */
+  --c-frame-page-bg: #020617;
+  --c-frame-grid: rgba(30, 64, 175, 0.055);
+  --c-frame-glow: rgba(37, 99, 235, 0.14);
+  --c-frame-outer: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.025) 100%);
+  --c-frame-border: rgba(51, 65, 85, 0.50);
+  --c-frame-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 40px 120px rgba(0, 0, 0, 0.60), 0 0 120px rgba(37, 99, 235, 0.14);
+}
+
+/* ─────────────────────────────────────────────────────
+   @theme  (Tailwind v4 token bridge)
+───────────────────────────────────────────────────── */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ─────────────────────────────────────────────────────
+   BASE
+───────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Smooth surface transitions on theme switch */
+[style*="--c-surface"],
+[style*="background: var"] {
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ─────────────────────────────────────────────────────
+   BACKGROUND TEXTURE CLASSES
+───────────────────────────────────────────────────── */
+
+/* Page background gradient */
+.page-bg {
+  background: linear-gradient(to bottom, #F8FAFC 0%, #EEF2F7 100%);
+}
+
+.dark .page-bg {
+  background: linear-gradient(to bottom, #0D1117 0%, #0A0F1A 100%);
+}
+
+/* Hero dot grid */
+.dot-grid {
+  background-image: radial-gradient(circle, #1e40af 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.030;
+}
+
+.dark .dot-grid {
+  background-image: radial-gradient(circle, #60A5FA 1px, transparent 1px);
+  opacity: 0.050;
+}
+
+/* Hero blueprint grid */
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, #1e40af 1px, transparent 1px),
+    linear-gradient(to bottom, #1e40af 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.022;
+}
+
+.dark .blueprint-grid {
+  background-image:
+    linear-gradient(to right, #3B82F6 1px, transparent 1px),
+    linear-gradient(to bottom, #3B82F6 1px, transparent 1px);
+  opacity: 0.055;
+}
+
+/* Section tonal dot grid */
+.section-grid {
+  background-image:
+    linear-gradient(to right, #000 1px, transparent 1px),
+    linear-gradient(to bottom, #000 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.025;
+}
+
+.dark .section-grid {
+  background-image:
+    linear-gradient(to right, #fff 1px, transparent 1px),
+    linear-gradient(to bottom, #fff 1px, transparent 1px);
+  opacity: 0.040;
+}
+
+/* Work card mini-grid (inside gradient header) */
+.mini-grid {
+  background-image:
+    linear-gradient(to right, #fff 1px, transparent 1px),
+    linear-gradient(to bottom, #fff 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.060;
+}
+
+/* CTA section grid */
+.cta-grid {
+  background-image:
+    linear-gradient(to right, #fff 1px, transparent 1px),
+    linear-gradient(to bottom, #fff 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.060;
+}
+
+/* ─────────────────────────────────────────────────────
+   SPLINE WATERMARK HIDE
+───────────────────────────────────────────────────── */
+.spline-watermark,
+a[href*="spline.design/"],
+canvas+div {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* ─────────────────────────────────────────────────────
+   COMPONENT / GHOST 404 EXTENSIONS
+───────────────────────────────────────────────────── */
+
+@theme {
+  --font-signika: 'Signika', sans-serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-great-vibes: 'Great Vibes', cursive;
+
+  --animate-fade-in: simpleFadeIn 0.3s ease-out forwards;
+  --animate-pulse-bar: pulseBar 1.5s ease-in-out infinite;
+  --animate-pulse-bar-delay: pulseBarShort 1.5s ease-in-out 0.2s infinite;
+  --animate-pulse-bar-delay2: pulseBar 1.5s ease-in-out 0.4s infinite;
+  --animate-glow: glow 2s ease-in-out infinite;
+}
+
+@keyframes bounce-x {
+
+  0%,
+  100% {
+    transform: translateX(-4px);
+  }
+
+  50% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes glow {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+  }
+
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+  }
+}
+
+@keyframes float-up {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes simpleFadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes pulseBar {
+
+  0%,
+  100% {
+    height: 24px;
+    opacity: 0.6;
+  }
+
+  50% {
+    height: 12px;
+    opacity: 0.2;
+  }
+}
+
+@keyframes pulseBarShort {
+
+  0%,
+  100% {
+    height: 16px;
+    opacity: 0.6;
+  }
+
+  50% {
+    height: 8px;
+    opacity: 0.2;
+  }
+}
+
+.lighting-button {
+  animation: bounce-x 1.5s ease-in-out infinite;
+}
+
+.lighting-button:hover {
+  animation: none;
+  transform: translateX(0);
+}
+
+.light-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.word-float {
+  animation: float-up 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  will-change: transform, opacity, filter;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.pulse-ring {
+  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
