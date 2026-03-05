@@ -88,28 +88,28 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* Right Column (Mobile: Top): Robot Area with Glow & Status */}
-          <div className="relative flex justify-center lg:justify-end items-center h-[540px] sm:h-[780px] lg:h-[960px] order-first lg:order-last group/robot">
+          <div className="relative flex justify-center lg:justify-end items-center h-[430px] sm:h-[620px] lg:h-[770px] order-first lg:order-last group/robot">
             {/* Soft Radial Glow behind robot */}
             <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[540px] h-[540px] sm:w-[900px] sm:h-[900px] opacity-100 pointer-events-none"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[430px] h-[430px] sm:w-[720px] sm:h-[720px] opacity-100 pointer-events-none"
               style={{
                 background: "radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)"
               }}
             />
 
-            <div className="relative w-full h-full lg:w-[170%] lg:-mr-[35%] xl:-mr-[45%] transition-transform duration-700 group-hover/robot:translate-y-[-8px]">
+            <div className="relative w-full h-full lg:w-[140%] lg:-mr-[15%] xl:-mr-[25%] transition-transform duration-700 group-hover/robot:translate-y-[-8px]">
               <Spline
                 scene="https://prod.spline.design/p85feVfke2nTctFY/scene.splinecode"
                 className="w-full h-full scale-100 cursor-grab active:cursor-grabbing"
               />
 
-              {/* Floating System Status (Pill) - Enlarged to cover watermark completely */}
-              <div className="absolute bottom-2 right-0.5 z-20 flex items-center gap-3 px-10 py-5 rounded-full bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-800 shadow-2xl backdrop-blur-xl hover:scale-105 transition-transform duration-300 translate-y-1 translate-x-1">
-                <span className="relative flex h-3 w-3">
+              {/* Floating System Status (Pill) - Enlarged to cover watermark completely (hiding the top black edge) */}
+              <div className="absolute bottom-1 right-0.5 z-20 flex items-center gap-3 px-10 py-5 rounded-full bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-800 shadow-2xl backdrop-blur-xl hover:scale-105 transition-transform duration-300 translate-x-1 -translate-y-1.5 focus-within:outline-none">
+                <span className="relative flex h-2.5 w-2.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
                 </span>
-                <span className="text-sm font-bold uppercase tracking-[0.25em] text-slate-800 dark:text-slate-200 whitespace-nowrap">
+                <span className="text-xs font-bold uppercase tracking-[0.25em] text-slate-800 dark:text-slate-200 whitespace-nowrap">
                   Robot Active
                 </span>
               </div>
