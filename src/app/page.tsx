@@ -88,16 +88,16 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* Right Column (Mobile: Top): Robot Area with Glow & Status */}
-          <div className="relative flex justify-center lg:justify-end items-center h-[400px] sm:h-[575px] lg:h-[700px] order-first lg:order-last group/robot">
+          <div className="relative flex justify-center lg:justify-end items-center h-[450px] sm:h-[650px] lg:h-[800px] order-first lg:order-last group/robot">
             {/* Soft Radial Glow behind robot */}
             <div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] sm:w-[650px] sm:h-[650px] opacity-100 pointer-events-none"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] sm:w-[750px] sm:h-[750px] opacity-100 pointer-events-none"
               style={{
                 background: "radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)"
               }}
             />
 
-            <div className="relative w-full h-full lg:w-[140%] lg:-mr-[20%] xl:-mr-[30%] transition-transform duration-700 group-hover/robot:translate-y-[-8px]">
+            <div className="relative w-full h-full lg:w-[160%] lg:-mr-[30%] xl:-mr-[40%] transition-transform duration-700 group-hover/robot:translate-y-[-8px]">
               <Spline
                 scene="https://prod.spline.design/p85feVfke2nTctFY/scene.splinecode"
                 className="w-full h-full scale-100 cursor-grab active:cursor-grabbing"
