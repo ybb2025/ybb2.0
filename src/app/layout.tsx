@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     "Custom digital infrastructure engineered from zero. No templates. No compromises. Built for scale.",
 };
 
+import { Spotlight } from "@/components/ui/Spotlight";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -35,6 +38,8 @@ export default function RootLayout({
         style={{ backgroundColor: "var(--background)", transition: "background-color 0.3s ease" }}
       >
         <Providers>
+          <ScrollProgress />
+          <Spotlight />
           {/* ── OS-level fixed backgrounds ─────────────────────────────
               Blueprint grid + ambient blue glow sit behind the frame.
               These are fixed so they persist during page scroll.       */}

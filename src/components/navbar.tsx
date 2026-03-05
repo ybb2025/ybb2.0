@@ -7,7 +7,10 @@ import { useEffect, useState } from "react";
 import { Sun, Moon, Globe, Layers, Zap, Briefcase, User } from "lucide-react";
 import { TubelightNavbar } from "@/components/ui/tubelight-navbar";
 
+import { Magnetic } from "@/components/ui/Magnetic";
+
 export function Navbar() {
+    // ... existing state
     const pathname = usePathname();
     const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
@@ -56,9 +59,11 @@ export function Navbar() {
 
             {/* Branding Logo (Left corner) */}
             <div className="absolute top-6 left-6 flex items-center pointer-events-auto">
-                <Link href="/" className="h-10 w-10 rounded-xl flex items-center justify-center font-black text-white text-[10px] tracking-wide bg-slate-900 shadow-lg hover:scale-105 transition-transform" aria-label="Home">
-                    YBB
-                </Link>
+                <Magnetic strength={0.2}>
+                    <Link href="/" className="h-10 w-10 rounded-xl flex items-center justify-center font-black text-white text-[10px] tracking-wide bg-slate-900 shadow-lg hover:scale-105 transition-transform" aria-label="Home">
+                        YBB
+                    </Link>
+                </Magnetic>
             </div>
         </nav>
     );
