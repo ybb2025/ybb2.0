@@ -59,3 +59,13 @@ firebase-debug*.log
 # sensitive firebase keys
 yourbrandbuilders-*.json
 .env.local
+
+.vercel
+
+
+# Additional Cleaned Files
+*-log.txt
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
