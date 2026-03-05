@@ -48,105 +48,56 @@ function ProjectCard({ project, flip }: { project: typeof projects[0]; flip: boo
             {/* ─── Image Panel ─── */}
             <div className="w-full lg:w-[56%] shrink-0 flex flex-col gap-4">
 
-                {/* Main display image */}
-                <div
-                    className="relative w-full overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 shadow-[0_20px_60px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.5)] bg-slate-100 dark:bg-[#111]"
-                    style={{ aspectRatio: "1/1" }}
-                >
-                    <img
-                        src={project.images[active].src}
-                        alt={project.images[active].label}
-                        style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "contain",
-                            objectPosition: "center",
-                            display: "block",
-                            transition: "opacity 0.35s ease",
-                        }}
-                    />
-                    {/* Badge */}
-                    <div style={{
-                        position: "absolute", top: 14, left: 14,
-                        display: "flex", alignItems: "center", gap: 8,
-                        background: "rgba(0,0,0,0.55)", backdropFilter: "blur(12px)",
-                        border: "1px solid rgba(255,255,255,0.2)",
-                        borderRadius: 999, padding: "5px 12px",
-                        fontSize: 10, fontWeight: 700, textTransform: "uppercase",
-                        letterSpacing: "0.12em", color: "#fff"
-                    }}>
-                        <span style={{
-                            width: 7, height: 7, borderRadius: 999,
-                            background: "#34d399", boxShadow: "0 0 6px rgba(52,211,153,0.8)",
-                            display: "inline-block", animation: "pulse 2s infinite"
-                        }} />
-                        {project.status}
+                {/* Main display image with premium screen mockup */}
+                <div className="group/screen relative w-full aspect-[4/3] rounded-2xl p-1.5 bg-slate-200 dark:bg-slate-800 shadow-2xl overflow-hidden border border-slate-300 dark:border-slate-700">
+                    <div className="absolute top-0 left-0 right-0 h-8 bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center px-4 gap-1.5 z-10">
+                        <div className="w-2.5 h-2.5 rounded-full bg-red-400 opacity-60" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 opacity-60" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-green-400 opacity-60" />
+                        <div className="ml-4 flex-1 h-5 bg-white/50 dark:bg-white/5 rounded-md border border-slate-200 dark:border-white/10" />
                     </div>
-                    {/* Active label */}
-                    <div style={{
-                        position: "absolute", bottom: 14, right: 14,
-                        background: "rgba(0,0,0,0.55)", backdropFilter: "blur(12px)",
-                        border: "1px solid rgba(255,255,255,0.15)",
-                        borderRadius: 8, padding: "4px 10px",
-                        fontSize: 11, color: "rgba(255,255,255,0.85)", fontWeight: 600
-                    }}>
-                        {project.images[active].label}
+
+                    <div className="relative w-full h-full pt-8 rounded-xl overflow-hidden bg-slate-100 dark:bg-[#111]">
+                        <img
+                            key={active}
+                            src={project.images[active].src}
+                            alt={project.images[active].label}
+                            className="w-full h-full object-cover object-top animate-fade-in transition-transform duration-700 group-hover/screen:scale-[1.03]"
+                        />
+
+                        {/* Badge */}
+                        <div className="absolute top-12 left-4 flex items-center gap-2 bg-black/60 backdrop-blur-md border border-white/20 rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white shadow-lg">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                            {project.status}
+                        </div>
+
+                        {/* Active label */}
+                        <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md border border-white/10 rounded-lg px-3 py-1.5 text-[11px] font-medium text-white/90 shadow-lg">
+                            {project.images[active].label}
+                        </div>
                     </div>
                 </div>
 
-                {/* Thumbnail grid (2×2) */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 12 }}>
+                {/* Thumbnails - Premium Horizontal Slider */}
+                <div className="flex gap-3 mt-2 overflow-x-auto pb-4 no-scrollbar">
                     {project.images.map((img, i) => (
-                        <div
-                            key={i}
-                            role="button"
-                            tabIndex={0}
+                        <button
+                            key={img.src}
                             onClick={() => setActive(i)}
-                            onKeyDown={(e) => e.key === "Enter" && setActive(i)}
-                            style={{
-                                aspectRatio: "16/9",
-                                borderRadius: 12,
-                                overflow: "hidden",
-                                cursor: "pointer",
-                                border: active === i
-                                    ? `2.5px solid ${project.accent}`
-                                    : "2.5px solid transparent",
-                                outline: active === i
-                                    ? "none"
-                                    : "2.5px solid rgba(148,163,184,0.3)",
-                                opacity: active === i ? 1 : 0.5,
-                                transition: "all 0.2s ease",
-                                boxShadow: active === i
-                                    ? `0 0 14px ${project.accent}55`
-                                    : "none",
-                                position: "relative",
-                            }}
+                            className={`relative flex-shrink-0 w-28 h-20 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 transform
+                            ${active === i
+                                    ? "ring-2 ring-blue-500 scale-105 shadow-lg"
+                                    : "opacity-60 hover:opacity-100 hover:scale-[1.02]"}`}
                         >
                             <img
                                 src={img.src}
                                 alt={img.label}
-                                style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
-                                    objectPosition: "top",
-                                    display: "block",
-                                    pointerEvents: "none",
-                                    userSelect: "none",
-                                }}
+                                className="w-full h-full object-cover"
                             />
-                            {/* Label on hover */}
-                            <div style={{
-                                position: "absolute", bottom: 0, left: 0, right: 0,
-                                background: "linear-gradient(transparent, rgba(0,0,0,0.6))",
-                                padding: "12px 8px 6px",
-                                fontSize: 9, fontWeight: 700,
-                                textTransform: "uppercase", letterSpacing: "0.1em",
-                                color: "rgba(255,255,255,0.85)", textAlign: "center",
-                            }}>
-                                {img.label}
-                            </div>
-                        </div>
+                            {active === i && (
+                                <div className="absolute inset-0 bg-blue-500/10 pointer-events-none" />
+                            )}
+                        </button>
                     ))}
                 </div>
 
