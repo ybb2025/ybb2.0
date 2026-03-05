@@ -69,7 +69,7 @@ export default function Home() {
       {/* ── PAGE BACKGROUND ── */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="page-bg absolute inset-0 transition-colors duration-500" />
-        <div className="dot-grid absolute inset-0" />
+        <div className="blueprint-grid absolute inset-0 opacity-[0.03] dark:opacity-[0.06]" />
         {/* Soft immersive ambient glows */}
         <div
           className="absolute top-[-10%] left-[-10%] h-[800px] w-[800px] rounded-full blur-[180px] opacity-60 dark:opacity-40 transition-colors duration-500"
@@ -84,75 +84,93 @@ export default function Home() {
 
 
       {/* ══ 1. HERO SECTION ══ */}
-      <section className="relative z-10 w-full pt-32 pb-20 lg:pt-48 lg:pb-32 px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+      <section className="relative z-10 w-full pt-24 lg:pt-32 pb-16 lg:pb-20 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          {/* Hero Typography & CTAs */}
-          <div className="flex flex-col text-center lg:text-left z-20">
-            <div className="mx-auto lg:mx-0 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 text-xs font-bold uppercase tracking-[0.15em] mb-8">
-              <Sparkles className="w-3.5 h-3.5" />
-              Infrastructure Studio
-            </div>
+          {/* Right Column (Mobile: Top): Robot Area with Glow & Status */}
+          <div className="relative flex justify-center lg:justify-end items-center h-[350px] sm:h-[500px] lg:h-[600px] order-first lg:order-last group/robot">
+            {/* Soft Radial Glow behind robot */}
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] sm:w-[550px] sm:h-[550px] opacity-100 pointer-events-none"
+              style={{
+                background: "radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)"
+              }}
+            />
 
-            <h1 className="text-5xl sm:text-6xl lg:text-[5rem] font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.05] mb-8">
-              Build Systems <br className="hidden lg:block" />
-              <span className="text-slate-900 dark:text-white italic pr-4">
-                That Scale.
-              </span>
-            </h1>
-
-            <p className="max-w-xl mx-auto lg:mx-0 text-lg sm:text-xl text-slate-600 dark:text-slate-400 font-light leading-relaxed mb-10">
-              We engineer beautiful web platforms, mobile applications, and resilient architectures from zero. No templates. No compromises.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-12">
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold text-white bg-slate-900 dark:bg-white dark:text-slate-900 hover:bg-black dark:hover:bg-slate-100 shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all hover:-translate-y-1"
-              >
-                Start a Project
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/work"
-                className="w-full sm:w-auto flex items-center justify-center px-8 py-4 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
-              >
-                View Our Work
-              </Link>
-            </div>
-
-            {/* Premium Minimal Stats */}
-            <div className="flex items-center justify-center lg:justify-start gap-8 border-t border-slate-200 dark:border-slate-800 pt-8">
-              {[
-                { label: "Projects Deployed", value: "12+" },
-                { label: "Reliability", value: "99.9%" },
-              ].map((stat, i) => (
-                <div key={i} className="flex flex-col">
-                  <span className="text-2xl font-bold text-slate-900 dark:text-white tabular-nums tracking-tight">{stat.value}</span>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">{stat.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Spline Robot Display */}
-          <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] flex items-center justify-center lg:justify-end">
-            <div className="absolute top-1/2 left-1/2 lg:left-2/3 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] sm:w-[500px] sm:h-[500px] bg-blue-500/20 dark:bg-blue-600/20 blur-[100px] rounded-full mix-blend-multiply dark:mix-blend-screen" />
-
-            <div className="relative w-full h-full lg:w-[120%] lg:-mr-[10%] xl:-mr-[20%]">
+            <div className="relative w-full h-full lg:w-[120%] lg:-mr-[10%] xl:-mr-[20%] transition-transform duration-700 group-hover/robot:translate-y-[-8px]">
               <Spline
                 scene="https://prod.spline.design/p85feVfke2nTctFY/scene.splinecode"
                 className="w-full h-full scale-100 cursor-grab active:cursor-grabbing"
               />
             </div>
 
-            {/* Live Indicator tag floating near robot */}
-            <div className="absolute bottom-4 right-4 lg:right-0 z-20 flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-slate-700/50 shadow-lg">
+            {/* Floating System Status (Pill) */}
+            <div className="absolute top-0 right-0 sm:top-10 sm:right-0 z-20 flex items-center gap-3 px-4 py-2 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-lg backdrop-blur-md">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-700 dark:text-slate-300">Robot Active</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-700 dark:text-slate-300">
+                Robot Active
+              </span>
+            </div>
+          </div>
+
+          {/* Left Column: Hero Typography & CTAs */}
+          <div className="flex flex-col z-20 text-center lg:text-left">
+            <div className="inline-flex items-center px-4 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-300 w-fit mx-auto lg:mx-0">
+              INFRASTRUCTURE STUDIO
+            </div>
+
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] mt-8 text-slate-900 dark:text-white tracking-tight">
+              Build Systems <br className="hidden sm:block" />
+              <span className="bg-gradient-to-r from-slate-900 via-slate-700 to-slate-500 dark:from-white dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+                That Actually Scale.
+              </span>
+            </h1>
+
+            <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed font-light mx-auto lg:mx-0">
+              We design and engineer scalable digital infrastructure — web platforms, SaaS systems, and mobile applications built from zero.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center lg:justify-start">
+              <Link
+                href="/contact"
+                className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-8 py-4 rounded-lg font-semibold text-sm shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 group"
+              >
+                Start a Project
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+
+              <Link
+                href="/work"
+                className="border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900/50 text-slate-700 dark:text-slate-300 px-8 py-4 rounded-lg font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center"
+              >
+                View Our Work
+              </Link>
+            </div>
+
+            {/* Stats Section with Cards */}
+            <div className="flex flex-wrap gap-4 sm:gap-8 mt-12 pt-10 border-t border-slate-100 dark:border-slate-800/50 justify-center lg:justify-start">
+              <div className="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/60 rounded-xl px-6 py-4 shadow-sm backdrop-blur-sm hover:shadow-md transition-shadow">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">12+</h3>
+                <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest mt-1">Projects Deployed</p>
+              </div>
+
+              <div className="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/60 rounded-xl px-6 py-4 shadow-sm backdrop-blur-sm hover:shadow-md transition-shadow">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">99.9%</h3>
+                <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider mt-1">System Reliability</p>
+              </div>
+            </div>
+
+            {/* Trusted Tech Stack Row */}
+            <div className="mt-10 flex flex-col items-center lg:items-start gap-4">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">Trusted Infrastructure Stack</span>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-x-6 gap-y-3 grayscale opacity-50 dark:opacity-40 hover:opacity-100 dark:hover:opacity-100 transition-opacity duration-500">
+                {['Next.js', 'Firebase', 'Stripe', 'AWS', 'Vercel'].map((tech) => (
+                  <span key={tech} className="text-sm font-semibold text-slate-600 dark:text-slate-300">{tech}</span>
+                ))}
+              </div>
             </div>
           </div>
 
