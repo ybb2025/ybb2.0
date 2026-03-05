@@ -102,17 +102,17 @@ export default function Home() {
                 scene="https://prod.spline.design/p85feVfke2nTctFY/scene.splinecode"
                 className="w-full h-full scale-100 cursor-grab active:cursor-grabbing"
               />
-            </div>
 
-            {/* Floating System Status (Pill) */}
-            <div className="absolute top-0 right-0 sm:top-10 sm:right-0 z-20 flex items-center gap-3 px-4 py-2 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-lg backdrop-blur-md">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-700 dark:text-slate-300">
-                Robot Active
-              </span>
+              {/* Floating System Status (Pill) - Internal to Spline container to cover watermark */}
+              <div className="absolute bottom-3 right-1 z-20 flex items-center gap-3 px-8 py-3 rounded-full bg-white/95 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-800 shadow-2xl backdrop-blur-xl hover:scale-105 transition-transform duration-300">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                </span>
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-800 dark:text-slate-200 whitespace-nowrap">
+                  Robot Active
+                </span>
+              </div>
             </div>
           </div>
 
