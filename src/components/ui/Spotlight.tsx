@@ -2,12 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
 
 export const Spotlight = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const { theme } = useTheme();
+    const pathname = usePathname();
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
         const handleMouseMove = (event: MouseEvent) => {
             setMousePosition({ x: event.clientX, y: event.clientY });
         };
@@ -18,6 +22,9 @@ export const Spotlight = () => {
             window.removeEventListener("mousemove", handleMouseMove);
         };
     }, []);
+
+    if (!mounted) return null;
+    if (pathname?.startsWith("/admin")) return null;
 
     // Only show on dark theme or certain pages for maximum impact
     // For now, let's make it more prominent in dark mode

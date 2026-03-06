@@ -35,6 +35,8 @@ export const Magnetic = ({ children, strength = 0.5 }: MagneticProps) => {
             onMouseLeave={handleMouseLeave}
             animate={{ x: position.x, y: position.y }}
             transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+            className="inline-block w-full sm:w-auto pointer-events-auto"
+            style={{ position: 'relative', zIndex: 10 }} // Ensure it stays clickable over backgrounds
         >
             {children}
         </motion.div>

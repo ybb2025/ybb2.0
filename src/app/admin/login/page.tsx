@@ -2,14 +2,14 @@
 
 import { useState, FormEvent, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Eye, EyeOff, Loader2, ShieldCheck } from "lucide-react";
+import { Eye, EyeOff, Loader2, ShieldCheck, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 function AdminLoginInner() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const from = searchParams.get("from") || "/admin";
 
-    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPass, setShowPass] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -24,7 +24,10 @@ function AdminLoginInner() {
             const res = await fetch("/api/admin/auth", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({
+                    email: "admin@ybb.com", // Hidden as per request to remove identifier field
+                    password
+                }),
             });
 
             if (res.ok) {
@@ -32,110 +35,109 @@ function AdminLoginInner() {
                 router.refresh();
             } else {
                 const data = await res.json();
-                setError(data.error || "Invalid credentials.");
+                setError(data.error || "Access Denied.");
             }
         } catch {
-            setError("Something went wrong. Please try again.");
+            setError("Authentication failed.");
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div className="min-h-screen bg-[#F4F8FC] flex items-center justify-center px-4 relative overflow-hidden">
+        <div className="min-h-screen bg-[#02040A] flex items-center justify-center px-4 relative overflow-hidden selection:bg-indigo-500/30">
 
-            {/* Background */}
-            <div className="absolute top-[-15%] left-[-10%] h-[500px] w-[500px] rounded-full bg-blue-100/60 blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-[-15%] right-[-10%] h-[400px] w-[400px] rounded-full bg-indigo-100/50 blur-[100px] pointer-events-none" />
-            <div className="absolute inset-0 opacity-[0.025] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+            {/* Background: Subtle Deep Studio Glows */}
+            <div className="absolute top-[-20%] left-[-10%] h-[600px] w-[600px] rounded-full bg-indigo-900/10 blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-[-20%] right-[-10%] h-[500px] w-[500px] rounded-full bg-slate-900/20 blur-[100px] pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#333_1px,transparent_1px),linear-gradient(to_bottom,#333_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
 
             <div className="relative w-full max-w-sm">
 
-                {/* Logo */}
-                <div className="flex flex-col items-center mb-8">
-                    <div className="h-14 w-14 rounded-2xl bg-blue-600 flex items-center justify-center font-black text-white text-base tracking-wide shadow-[0_8px_24px_rgba(37,99,235,0.35)] mb-4">
+                {/* Brand / Logo */}
+                <div className="flex flex-col items-center mb-10">
+                    <div className="h-16 w-16 rounded-2xl bg-indigo-600 flex items-center justify-center font-black text-white text-lg tracking-wide shadow-[0_0_30px_rgba(79,70,229,0.3)] mb-6 animate-pulse">
                         YBB
                     </div>
-                    <h1 className="text-xl font-bold text-slate-900 tracking-tight">YBB Operating System</h1>
-                    <p className="text-sm text-slate-500 font-light mt-1">Admin access only</p>
+                    <h1 className="text-2xl font-bold text-white tracking-tight">Jarvis OS</h1>
+                    <p className="text-sm text-slate-500 font-medium mt-1 tracking-widest uppercase opacity-60">Control Interface v2.0</p>
                 </div>
 
-                {/* Card */}
-                <div className="backdrop-blur-xl bg-white/60 border border-white/70 rounded-3xl shadow-[0_20px_60px_rgba(37,99,235,0.09)] p-8">
+                {/* Main Access Card */}
+                <div className="backdrop-blur-2xl bg-slate-950/40 border border-slate-800/60 rounded-[32px] shadow-2xl p-10">
 
-                    <div className="flex items-center gap-2 mb-6">
-                        <ShieldCheck className="w-4 h-4 text-blue-600" />
-                        <span className="text-sm font-semibold text-slate-700">Secure Login</span>
+                    <div className="flex items-center gap-2.5 mb-8">
+                        <div className="h-2 w-2 rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.8)]" />
+                        <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400">System Authentication</span>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-6">
 
-                        {/* Email */}
-                        <div className="space-y-1.5">
-                            <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                                Email Address
-                            </label>
-                            <input
-                                required
-                                autoFocus
-                                type="email"
-                                value={email}
-                                onChange={e => setEmail(e.target.value)}
-                                placeholder="admin@ybb.com"
-                                className="w-full bg-white/80 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-400 transition-all"
-                            />
-                        </div>
-
-                        {/* Password */}
-                        <div className="space-y-1.5">
-                            <label className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                                Password
+                        {/* Access Key (Password) */}
+                        <div className="space-y-2.5">
+                            <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">
+                                Command Access Key
                             </label>
                             <div className="relative">
                                 <input
                                     required
+                                    autoFocus
                                     type={showPass ? "text" : "password"}
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
-                                    placeholder="••••••••"
-                                    className="w-full bg-white/80 border border-slate-200 rounded-xl px-4 py-3 pr-11 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-400 transition-all"
+                                    placeholder="••••••••••••"
+                                    className="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-5 py-4 text-sm text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500/50 transition-all font-mono tracking-widest"
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPass(p => !p)}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors p-1"
                                 >
                                     {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                 </button>
                             </div>
                         </div>
 
-                        {/* Error */}
+                        {/* Error Feedback */}
                         {error && (
-                            <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-xs font-medium text-red-600">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-red-500 text-center"
+                            >
                                 {error}
-                            </div>
+                            </motion.div>
                         )}
 
                         {/* Submit */}
                         <button
                             type="submit"
-                            disabled={loading || !email || !password}
-                            className="w-full flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white transition-all hover:bg-blue-700 hover:shadow-[0_0_20px_rgba(37,99,235,0.35)] disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+                            disabled={loading || !password}
+                            className="w-full flex items-center justify-center gap-3 rounded-xl bg-indigo-600 px-6 py-4 text-sm font-bold text-white transition-all hover:bg-indigo-500 hover:shadow-[0_0_30px_rgba(79,70,229,0.3)] disabled:opacity-40 disabled:cursor-not-allowed group active:scale-[0.98]"
                         >
                             {loading ? (
-                                <><Loader2 className="w-4 h-4 animate-spin" />Authenticating...</>
+                                <><Loader2 className="w-4 h-4 animate-spin text-indigo-200" />Initializing...</>
                             ) : (
-                                "Access Admin Panel"
+                                <>
+                                    <span>Establish Connection</span>
+                                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </>
                             )}
                         </button>
 
                     </form>
                 </div>
 
-                <p className="text-center text-xs text-slate-400 mt-6 font-light">
-                    Restricted to authorised YBB team members only.
-                </p>
+                <div className="mt-8 flex flex-col items-center gap-4 opacity-40 hover:opacity-100 transition-opacity">
+                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.25em]">
+                        Your Brand Builders
+                    </p>
+                    <div className="flex items-center gap-2">
+                        <div className="h-1 w-1 rounded-full bg-slate-700" />
+                        <div className="h-1 w-1 rounded-full bg-slate-700" />
+                        <div className="h-1 w-1 rounded-full bg-slate-700" />
+                    </div>
+                </div>
 
             </div>
         </div>

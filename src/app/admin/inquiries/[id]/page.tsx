@@ -7,7 +7,7 @@ import {
     ArrowLeft, Check, Download, Loader2,
     User, Building2, Mail, Globe,
     LayoutGrid, Target, Calendar, DollarSign,
-    FileText, ChevronRight, RefreshCw,
+    FileText, ChevronRight, RefreshCw, Sparkles,
 } from "lucide-react";
 
 // ─── Pricing data ─────────────────────────────────────────────────────────────
@@ -47,8 +47,11 @@ const BUDGET_LABELS: Record<string, string> = {
 };
 
 const PROJECT_LABELS: Record<string, string> = {
-    website: "Custom Website", webapp: "Web Application", mobile: "Mobile App (Android & iOS)",
-    infrastructure: "Full Digital Infrastructure", internal: "Internal System", unsure: "Not Sure Yet",
+    "Website": "Website",
+    "SaaS App": "SaaS Platform",
+    "Mobile App": "Mobile Application",
+    "AI Tool": "AI Agent / Tool",
+    "Dashboard": "Admin Dashboard",
 };
 
 function inr(n: number) { return `₹${n.toLocaleString("en-IN")}`; }
@@ -262,6 +265,13 @@ export default function InquiryDetail() {
                             <option key={s} value={s} className="bg-black text-white">{s}</option>
                         ))}
                     </select>
+                    <button
+                        onClick={() => router.push(`/admin/ai-planning?inquiryId=${id}`)}
+                        className="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold bg-indigo-600/10 text-indigo-400 border border-indigo-500/20 hover:bg-indigo-600/20 transition-all"
+                    >
+                        <Sparkles className="w-4 h-4" />
+                        AI Analysis
+                    </button>
                     <button
                         onClick={handleSave}
                         disabled={saving}

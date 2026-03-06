@@ -35,9 +35,7 @@ export function Navbar() {
     return (
         <nav className="fixed top-0 left-0 w-full z-50 pointer-events-none">
             {/* The actual Tubelight Nav wrapper (centered) */}
-            <div className="pointer-events-auto">
-                <TubelightNavbar items={navItems} />
-            </div>
+            <TubelightNavbar items={navItems} className="pointer-events-auto" />
 
             {/* Corner controls (Theme toggle & Admin) */}
             <div className="absolute top-6 right-6 flex items-center gap-3 pointer-events-auto">

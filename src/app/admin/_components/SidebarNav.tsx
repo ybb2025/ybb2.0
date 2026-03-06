@@ -6,14 +6,17 @@ import { ExternalLink, LogOut } from "lucide-react";
 import {
     LayoutDashboard, Inbox, FileText,
     FolderKanban, TrendingUp, Settings,
+    Users, Sparkles
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const NAV_MAIN = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
-    { href: "/admin/inquiries", label: "Inquiries", icon: Inbox },
-    { href: "/admin/quotes", label: "Quotes", icon: FileText },
+    { href: "/admin/inquiries", label: "Leads", icon: Inbox },
+    { href: "/admin/clients", label: "Clients", icon: Users },
     { href: "/admin/projects", label: "Projects", icon: FolderKanban },
+    { href: "/admin/quotes", label: "Estimates", icon: FileText },
+    { href: "/admin/ai-planning", label: "AI Planning", icon: Sparkles },
     { href: "/admin/revenue", label: "Revenue", icon: TrendingUp },
 ];
 
@@ -39,8 +42,8 @@ export function SidebarNav() {
             <Link
                 href={href}
                 className={`relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-medium transition-all duration-150 group ${active
-                        ? "bg-blue-600/15 text-blue-400"
-                        : "text-gray-500 hover:text-gray-200 hover:bg-white/[0.04]"
+                    ? "bg-blue-600/15 text-blue-400"
+                    : "text-gray-500 hover:text-gray-200 hover:bg-white/[0.04]"
                     }`}
             >
                 {/* Active left bar */}

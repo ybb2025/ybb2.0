@@ -48,59 +48,6 @@ export function AnimatedPasswordInput({
     return (
         <div className="relative flex w-full flex-col items-start justify-center">
 
-            {/* Visual Feedback Display */}
-            <motion.div
-                className="mb-3 mt-1 h-[42px] w-full rounded-xl border-2 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 px-2 py-2 overflow-hidden shadow-sm"
-                animate={{
-                    ...bounceAnimation,
-                    ...matchAnimation,
-                    ...borderAnimation,
-                }}
-            >
-                <div className="relative h-full w-full flex items-center gap-1.5 overflow-hidden rounded-lg px-2">
-                    {/* We render a tracking dot for up to 20 typed characters */}
-                    {Array.from({ length: 20 }).map((_, index) => {
-                        const isTyped = index < value.length;
-                        let bgColor = "transparent";
-
-                        if (isTyped) {
-                            if (error) bgColor = "#EF4444"; // red
-                            else if (success) bgColor = "#10B981"; // green
-                            else bgColor = "#3B82F6"; // blue (typing)
-                        }
-
-                        return (
-                            <div
-                                key={index}
-                                className="flex h-full w-3 shrink-0 items-center justify-center relative"
-                            >
-                                {/* Background active color */}
-                                <motion.div
-                                    className="absolute inset-0 rounded-md"
-                                    initial={false}
-                                    animate={{
-                                        backgroundColor: bgColor,
-                                        scale: isTyped ? 1 : 0,
-                                        opacity: isTyped ? 0.3 : 0
-                                    }}
-                                    transition={{ duration: 0.2 }}
-                                />
-                                {/* Center dot */}
-                                <motion.span
-                                    className="size-[5px] rounded-full z-10"
-                                    initial={false}
-                                    animate={{
-                                        backgroundColor: error ? "#EF4444" : success ? "#10B981" : isTyped ? "#2563EB" : "#CBD5E1",
-                                        scale: isTyped ? 1.2 : 1
-                                    }}
-                                    transition={{ duration: 0.2 }}
-                                />
-                            </div>
-                        );
-                    })}
-                </div>
-            </motion.div>
-
             {/* Actual Input Field */}
             <motion.div
                 className="relative h-[52px] w-full overflow-hidden rounded-xl"

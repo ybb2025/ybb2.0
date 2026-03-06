@@ -291,32 +291,41 @@ export default function Home() {
                 category: "Energy Infrastructure",
                 desc: "Custom-engineered digital solar platform built for scalability and performance.",
                 img: "/portfolio/markandeyasolar-4.png",
-                link: "https://markandeyasolar.com"
+                link: "https://markandeyasolar.com",
+                slug: "markandeya-solar"
               },
               {
                 title: "Beads to Brilliance",
                 category: "B2B EdTech Platform",
                 desc: "Secure B2B learning management system with robust user progression.",
                 img: "/portfolio/beadstobrilliance-3.png",
-                link: "https://b2bproduction-ready5.vercel.app"
+                link: "https://b2bproduction-ready5.vercel.app",
+                slug: "beads-to-brilliance"
               },
             ].map((work, i) => (
               <FadeIn key={i} delay={i * 200} className="group rounded-[24px] bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 {/* Real screenshot preview */}
-                <div className="w-full bg-slate-100 dark:bg-[#0a0f1a] flex items-center justify-center overflow-hidden" style={{ aspectRatio: "16/10" }}>
+                <Link href={`/work/${work.slug}`} className="block w-full bg-slate-100 dark:bg-[#0a0f1a] flex items-center justify-center overflow-hidden" style={{ aspectRatio: "16/10" }}>
                   <img
                     src={work.img}
                     alt={work.title}
                     className="w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-[1.03]"
                   />
-                </div>
+                </Link>
                 <div className="p-8">
                   <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3">{work.category}</span>
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{work.title}</h3>
-                  <p className="text-slate-500 dark:text-slate-400 font-light text-sm leading-relaxed mb-6">{work.desc}</p>
-                  <Link href={work.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white group/link">
-                    View Project <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" />
+                  <Link href={`/work/${work.slug}`} className="block group/title">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover/title:text-blue-600 transition-colors">{work.title}</h3>
                   </Link>
+                  <p className="text-slate-500 dark:text-slate-400 font-light text-sm leading-relaxed mb-6">{work.desc}</p>
+                  <div className="flex items-center justify-between">
+                    <Link href={`/work/${work.slug}`} className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white group/link">
+                      Read Case Study <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" />
+                    </Link>
+                    <Link href={work.link} target="_blank" rel="noopener noreferrer" className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+                      Live Preview
+                    </Link>
+                  </div>
                 </div>
               </FadeIn>
             ))}

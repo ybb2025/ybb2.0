@@ -155,13 +155,13 @@
   --c-text-3: #94A3B8;
   --c-text-4: #64748B;
 
-  /* System Window Frame */
-  --c-frame-page-bg: #020617;
-  --c-frame-grid: rgba(30, 64, 175, 0.055);
-  --c-frame-glow: rgba(37, 99, 235, 0.14);
-  --c-frame-outer: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.025) 100%);
-  --c-frame-border: rgba(51, 65, 85, 0.50);
-  --c-frame-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 40px 120px rgba(0, 0, 0, 0.60), 0 0 120px rgba(37, 99, 235, 0.14);
+  /* System Window Frame — Refined Deep Studio tones */
+  --c-frame-page-bg: #030711;
+  --c-frame-grid: rgba(30, 64, 185, 0.04);
+  --c-frame-glow: radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.08) 0%, transparent 60%);
+  --c-frame-outer: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --c-frame-border: rgba(30, 41, 59, 0.70);
+  --c-frame-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset, 0 30px 100px rgba(0, 0, 0, 0.8), 0 0 80px rgba(79, 70, 229, 0.06);
 }
 
 /* ─────────────────────────────────────────────────────

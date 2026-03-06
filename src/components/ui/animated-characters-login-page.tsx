@@ -219,19 +219,34 @@ export function AnimatedLoginPage() {
     };
 
     return (
-        <div className="min-h-screen grid lg:grid-cols-2 transition-colors duration-300">
+        <div className="min-h-screen grid lg:grid-cols-2 transition-colors duration-300 bg-slate-50 dark:bg-[#0D1117]">
 
-            {/* ── LEFT: Characters ─────────────────────────────────────────── */}
-            <div className="relative hidden lg:flex flex-col justify-between bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 p-12 text-white overflow-hidden">
+            {/* ── LEFT: Brand & Characters ─────────────────────────────────────────── */}
+            <div className="relative hidden lg:flex flex-col justify-between bg-[#0A0A0B] border-r border-slate-800/60 p-12 text-white overflow-hidden">
 
-                {/* Logo */}
-                <div className="relative z-20 flex items-center gap-2 text-lg font-bold">
-                    <div className="h-8 w-8 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center text-xs font-bold">YB</div>
-                    <span>YBB</span>
+                {/* Decorative background blobs */}
+                <div className="absolute inset-0 bg-[size:20px_20px] opacity-[0.02] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)]" />
+                <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
+
+                {/* Top Branding & Tagline */}
+                <div className="relative z-20 space-y-8 mt-4">
+                    <div className="flex items-center gap-3 text-2xl font-bold">
+                        <div className="h-10 w-10 rounded-xl bg-[#111113] border border-slate-800 flex items-center justify-center text-[11px] font-black tracking-widest shadow-xl text-slate-100">YB</div>
+                        <span className="tracking-tight text-slate-100">YBB OS</span>
+                    </div>
+                    <div>
+                        <h1 className="text-5xl font-extrabold tracking-tight leading-[1.15] mb-4 text-slate-100">
+                            Build and launch projects<br /><span className="text-indigo-400 drop-shadow-md">faster with AI.</span>
+                        </h1>
+                        <p className="text-lg font-medium text-slate-400 max-w-md leading-relaxed">
+                            The intelligent Operating System for the modern digital agency.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Characters Stage */}
-                <div className="relative z-20 flex items-end justify-center h-[500px]">
+                <div className="relative z-20 flex items-end justify-center h-[500px] -mb-10 pointer-events-none">
                     <div className="relative" style={{ width: 550, height: 400 }}>
 
                         {/* Purple — back */}
@@ -248,6 +263,7 @@ export function AnimatedLoginPage() {
                                         ? `skewX(${(pp.bodySkew || 0) - 12}deg) translateX(40px)`
                                         : `skewX(${pp.bodySkew || 0}deg)`,
                                 transformOrigin: "bottom center",
+                                boxShadow: "0 -10px 40px rgba(108, 63, 245, 0.3)"
                             }}
                         >
                             <div className="absolute flex gap-8 transition-all duration-700 ease-in-out"
@@ -270,7 +286,7 @@ export function AnimatedLoginPage() {
                         <div ref={blackRef} className="absolute bottom-0 transition-all duration-700 ease-in-out"
                             style={{
                                 left: 240, width: 120, height: 310,
-                                backgroundColor: "#2D2D2D",
+                                backgroundColor: "#1e293b",
                                 borderRadius: "8px 8px 0 0",
                                 zIndex: 2,
                                 transform: isPasswordVisible
@@ -281,6 +297,7 @@ export function AnimatedLoginPage() {
                                             ? `skewX(${(bp.bodySkew || 0) * 1.5}deg)`
                                             : `skewX(${bp.bodySkew || 0}deg)`,
                                 transformOrigin: "bottom center",
+                                boxShadow: "0 -10px 30px rgba(0, 0, 0, 0.4)"
                             }}
                         >
                             <div className="absolute flex gap-6 transition-all duration-700 ease-in-out"
@@ -290,7 +307,7 @@ export function AnimatedLoginPage() {
                                 }}
                             >
                                 {[0, 1].map(i => (
-                                    <EyeBall key={i} size={16} pupilSize={6} maxDistance={4} eyeColor="white" pupilColor="#2D2D2D"
+                                    <EyeBall key={i} size={16} pupilSize={6} maxDistance={4} eyeColor="white" pupilColor="#1e293b"
                                         isBlinking={isBlackBlinking}
                                         forceLookX={isPasswordVisible ? -4 : isLookingAtEachOther ? 0 : undefined}
                                         forceLookY={isPasswordVisible ? -4 : isLookingAtEachOther ? -4 : undefined}
@@ -308,6 +325,7 @@ export function AnimatedLoginPage() {
                                 zIndex: 3,
                                 transform: isPasswordVisible ? "skewX(0deg)" : `skewX(${op.bodySkew || 0}deg)`,
                                 transformOrigin: "bottom center",
+                                boxShadow: "inset 0 10px 20px rgba(255, 255, 255, 0.2), 0 -10px 30px rgba(255, 155, 107, 0.4)"
                             }}
                         >
                             <div className="absolute flex gap-8 transition-all duration-200 ease-out"
@@ -317,7 +335,7 @@ export function AnimatedLoginPage() {
                                 }}
                             >
                                 {[0, 1].map(i => (
-                                    <Pupil key={i} size={12} maxDistance={5} pupilColor="#2D2D2D"
+                                    <Pupil key={i} size={12} maxDistance={5} pupilColor="#1e293b"
                                         forceLookX={isPasswordVisible ? -5 : undefined}
                                         forceLookY={isPasswordVisible ? -4 : undefined}
                                     />
@@ -334,6 +352,7 @@ export function AnimatedLoginPage() {
                                 zIndex: 4,
                                 transform: isPasswordVisible ? "skewX(0deg)" : `skewX(${yp.bodySkew || 0}deg)`,
                                 transformOrigin: "bottom center",
+                                boxShadow: "inset 0 10px 20px rgba(255, 255, 255, 0.3), 0 -10px 30px rgba(232, 215, 84, 0.4)"
                             }}
                         >
                             <div className="absolute flex gap-6 transition-all duration-200 ease-out"
@@ -343,14 +362,14 @@ export function AnimatedLoginPage() {
                                 }}
                             >
                                 {[0, 1].map(i => (
-                                    <Pupil key={i} size={12} maxDistance={5} pupilColor="#2D2D2D"
+                                    <Pupil key={i} size={12} maxDistance={5} pupilColor="#1e293b"
                                         forceLookX={isPasswordVisible ? -5 : undefined}
                                         forceLookY={isPasswordVisible ? -4 : undefined}
                                     />
                                 ))}
                             </div>
                             {/* Mouth */}
-                            <div className="absolute w-20 h-1 bg-[#2D2D2D] rounded-full transition-all duration-200 ease-out"
+                            <div className="absolute w-20 h-1 bg-[#1e293b] rounded-full transition-all duration-200 ease-out"
                                 style={{
                                     left: isPasswordVisible ? 10 : 40 + (yp.faceX || 0),
                                     top: isPasswordVisible ? 88 : 88 + (yp.faceY || 0),
@@ -361,52 +380,52 @@ export function AnimatedLoginPage() {
                 </div>
 
                 {/* Footer links */}
-                <div className="relative z-20 flex items-center gap-8 text-sm text-white/60">
-                    <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="/contact" className="hover:text-white transition-colors">Contact</a>
+                <div className="relative z-20 flex items-center gap-8 text-sm text-slate-500 font-medium">
+                    <a href="#" className="hover:text-slate-300 transition-colors">Privacy Policy</a>
+                    <a href="#" className="hover:text-slate-300 transition-colors">Terms of Service</a>
+                    <a href="/contact" className="hover:text-slate-300 transition-colors">Contact</a>
                 </div>
-
-                {/* Decorative */}
-                <div className="absolute inset-0 bg-[size:20px_20px] opacity-[0.04] bg-[linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)]" />
-                <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
             </div>
 
             {/* ── RIGHT: Form ──────────────────────────────────────────────── */}
-            <div className="flex items-center justify-center p-8 bg-[#F8FAFC] dark:bg-[#0D1117] transition-colors duration-300">
-                <div className="w-full max-w-[420px]">
+            <div className="flex items-center justify-center p-6 sm:p-12 relative w-full">
+
+                {/* Floating Glass Card */}
+                <div className="w-full max-w-[440px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl border border-white/40 dark:border-slate-800 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] rounded-3xl p-8 sm:p-10 relative z-10 transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)]">
 
                     {/* Mobile logo */}
-                    <div className="lg:hidden flex items-center justify-center gap-2 text-lg font-bold mb-12">
-                        <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white text-xs">YB</div>
-                        <span className="text-slate-900 dark:text-slate-100">YBB</span>
+                    <div className="lg:hidden flex items-center justify-center gap-2 text-xl font-bold mb-10">
+                        <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white text-xs shadow-md border border-white/20">YB</div>
+                        <span className="text-slate-900 dark:text-slate-100 tracking-tight">YBB OS</span>
                     </div>
 
-                    <div className="text-center mb-10">
-                        <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50 mb-2">Welcome back.</h1>
-                        <p className="text-slate-500 dark:text-slate-400 text-sm">Admin access · YBB Operating System</p>
+                    <div className="mb-8">
+                        <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 mb-2">Welcome back</h2>
+                        <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">Admin access to YBB Operating System</p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-5">
-                        <div className="space-y-2">
-                            <Label htmlFor="email" className="text-sm font-medium text-slate-700 dark:text-slate-300">Email Address</Label>
+                        <div className="space-y-1.5">
+                            <Label htmlFor="email" className="text-[13px] font-bold text-slate-700 dark:text-slate-300">Email Address</Label>
                             <Input
                                 id="email"
                                 type="email"
-                                placeholder="admin@ybb.com"
+                                placeholder="name@yourbrandbuilders.com"
                                 value={email}
                                 autoComplete="off"
                                 onChange={e => setEmail(e.target.value)}
                                 onFocus={() => setIsTyping(true)}
                                 onBlur={() => setIsTyping(false)}
                                 required
-                                className="h-12 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 focus:border-blue-400 dark:focus:border-blue-500 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                                className="h-12 bg-slate-50 dark:bg-slate-950/50 border-slate-200 dark:border-slate-800 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:ring-4 focus:ring-blue-500/10 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600 rounded-xl font-medium transition-all"
                             />
                         </div>
 
-                        <div className="space-y-2">
-                            <Label htmlFor="password" className="text-sm font-medium text-slate-700 dark:text-slate-300">Password</Label>
+                        <div className="space-y-1.5 pt-2">
+                            <div className="flex items-center justify-between">
+                                <Label htmlFor="password" className="text-[13px] font-bold text-slate-700 dark:text-slate-300">Password</Label>
+                                <a href="#" className="text-[13px] font-semibold text-blue-600 hover:text-blue-500 transition-colors">Forgot?</a>
+                            </div>
                             <AnimatedPasswordInput
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
@@ -415,30 +434,30 @@ export function AnimatedLoginPage() {
                             />
                         </div>
 
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                                <Checkbox id="remember" />
-                                <Label htmlFor="remember" className="text-sm font-normal cursor-pointer text-slate-600 dark:text-slate-400">
-                                    Remember for 30 days
-                                </Label>
-                            </div>
+                        <div className="flex items-center gap-2 pt-2">
+                            <Checkbox id="remember" className="rounded-[4px] border-slate-300 text-blue-600 focus:ring-blue-600" />
+                            <Label htmlFor="remember" className="text-[13px] font-medium cursor-pointer text-slate-600 dark:text-slate-400 select-none">
+                                Remember for 30 days
+                            </Label>
                         </div>
 
                         {error && (
-                            <div className="p-3 text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl">
+                            <div className="p-3 text-sm font-medium text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 rounded-xl">
                                 {error}
                             </div>
                         )}
 
-                        <Button type="submit" size="lg" disabled={isLoading}
-                            className="w-full h-12 text-base font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-xl"
-                        >
-                            {isLoading ? "Authenticating..." : "Access Admin Panel"}
-                        </Button>
+                        <div className="pt-4">
+                            <Button type="submit" size="lg" disabled={isLoading}
+                                className="w-full h-12 text-[15px] font-bold bg-blue-600 hover:bg-blue-700 hover:shadow-[0_8px_20px_rgba(37,99,235,0.25)] text-white rounded-xl transition-all active:scale-[0.98]"
+                            >
+                                {isLoading ? "Authenticating..." : "Access Admin Panel"}
+                            </Button>
+                        </div>
                     </form>
 
-                    <p className="text-center text-xs text-slate-400 dark:text-slate-500 mt-8">
-                        Restricted to authorised YBB team members only.
+                    <p className="text-center text-xs font-medium text-slate-400 dark:text-slate-500 mt-8">
+                        Protected by YBB Security · <a href="#" className="hover:text-slate-600 dark:hover:text-slate-300 underline underline-offset-2">Authorised access only</a>
                     </p>
                 </div>
             </div>
