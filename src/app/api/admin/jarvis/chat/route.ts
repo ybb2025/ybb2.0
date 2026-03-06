@@ -114,7 +114,7 @@ export async function POST(req: Request) {
             // Append the assistant's tool call message to the conversation
             formattedMessages.push(message);
 
-            for (const call of toolCalls) {
+            for (const call of (toolCalls as any[])) {
                 const { id, function: fn } = call;
                 const name = fn.name;
                 const args = JSON.parse(fn.arguments || "{}");
@@ -132,7 +132,6 @@ export async function POST(req: Request) {
                 formattedMessages.push({
                     role: "tool",
                     tool_call_id: id,
-                    name: name,
                     content: JSON.stringify(data)
                 });
             }
