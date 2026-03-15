@@ -19,8 +19,8 @@ export async function GET(request: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    console.log("Webhook event:", JSON.stringify(body, null, 2));
-    return new Response("OK", { status: 200 });
+    console.log("WhatsApp webhook event:", body);
+    return new Response("EVENT_RECEIVED", { status: 200 });
   } catch (error) {
     console.error("Webhook error:", error);
     return new Response("Error", { status: 500 });
