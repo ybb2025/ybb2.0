@@ -6,8 +6,8 @@ const SESSION_TOKEN = process.env.ADMIN_SESSION_TOKEN || "ybb-admin-session-2026
 export default function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    // Let the login page and auth API through
-    if (pathname === "/admin-login" || pathname === "/api/admin/auth") {
+    // Let the login page, auth API, and WhatsApp webhook through
+    if (pathname === "/admin-login" || pathname === "/api/admin/auth" || pathname === "/api/webhook") {
         return NextResponse.next();
     }
 
