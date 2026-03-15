@@ -226,6 +226,42 @@ export default function StudioPage() {
                     </div>
                 </div>
             </section>
+
+            {/* ══ INSIGHTS & GUIDES (GEO) ══════════════════════════════════ */}
+            <section className="relative z-10 w-full py-32 border-t border-slate-200/50 dark:border-slate-800/50">
+                <div className="max-w-[1200px] mx-auto px-6">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+                        <div>
+                            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                                Industry Insights.
+                            </h2>
+                            <p className="text-lg text-slate-600 dark:text-slate-400 font-light mt-4">
+                                Strategic engineering perspectives for forward-thinking brands.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {[
+                            {
+                                title: "Best School Website Design in India (2026 Guide)",
+                                excerpt: "How digital admission systems and high-performance infrastructure are redefining educational brands.",
+                                link: "/guides/school-website-design-india",
+                                tag: "Industry Guide"
+                            }
+                        ].map((post, i) => (
+                            <Link key={i} href={post.link} className="group relative p-8 rounded-[32px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                                <div className="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-4">{post.tag}</div>
+                                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-blue-600 transition-colors">{post.title}</h3>
+                                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-8">{post.excerpt}</p>
+                                <div className="flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-white">
+                                    Read Guide <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </section>
         </main>
     );
 }

@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { FAQStructuredData } from "@/components/faq-structured-data";
 
 export default function Home() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -339,7 +340,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ 5. PREMIUM CTA ══ */}
+      {/* ══ 5. FAQ SECTION (GEO OPTIMIZED) ══ */}
+      <section className="relative z-10 w-full py-32 bg-white dark:bg-slate-900/10">
+        <FAQStructuredData />
+        <div className="max-w-4xl mx-auto px-6">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+              Infrastructure Intelligence.
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400 font-light">
+              Common inquiries about our engineering process and engineering standards.
+            </p>
+          </FadeIn>
+
+          <div className="space-y-8">
+            {[
+              {
+                q: "How much does a custom website cost in India?",
+                a: "**A custom school or business website in India typically costs between ₹15,000 and ₹80,000.** This depends on specific features like ERP integration, digital admissions, and high-performance infrastructure requirements."
+              },
+              {
+                q: "What technologies do you use for website development?",
+                a: "**We use a modern, scalable stack including Next.js, Firebase, Stripe, and AWS.** This ensures absolute control over assets, native-level performance, and 99.9% system reliability for every project."
+              },
+              {
+                q: "Do you provide hospital and school website development?",
+                a: "**Yes, we specialize in digital infrastructure for educational and healthcare institutions.** Our solutions include custom ERP systems, secure admission portals, and enterprise-grade health tracking platforms."
+              },
+              {
+                q: "Do you build mobile applications for iOS and Android?",
+                a: "**Yes, we engineer native-level mobile applications using Flutter for unmatched performance and speed.** We build secure, scalable apps for both iOS and Android that integrate seamlessly with your existing infrastructure."
+              },
+              {
+                q: "Where is YourBrandBuilders based and do you work with international clients?",
+                a: "**We are based in Khammam, Telangana, and serve as a regional hub for Hyderabad, Vijayawada, and Vizag.** While we have a strong presence in South India, we operate globally, providing remote engineering services for international clients using modern collaboration tools."
+              }
+            ].map((faq, i) => (
+              <FadeIn key={i} delay={i * 100} className="p-8 rounded-[24px] bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 hover:border-blue-500/30 transition-all duration-300">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">{faq.q}</h3>
+                <p className="text-slate-600 dark:text-slate-400 font-light leading-relaxed" dangerouslySetInnerHTML={{ __html: faq.a.replace(/\*\*(.*?)\*\*/g, '<strong class="text-slate-900 dark:text-slate-200">$1</strong>') }} />
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══ 6. PREMIUM CTA ══ */}
       <section className="relative z-10 w-full px-6 pb-24">
         <FadeIn className="max-w-5xl mx-auto rounded-[32px] bg-slate-900 dark:bg-black text-white p-12 md:p-20 text-center relative overflow-hidden shadow-2xl group">
           <div className="absolute inset-0 bg-blue-600/10 blur-[100px] pointer-events-none group-hover:bg-blue-600/20 transition-colors duration-700" />

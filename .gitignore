@@ -69,3 +69,13 @@ yourbrandbuilders-*.json
 *.log
 .DS_Store
 Thumbs.db
+.env*.local
+
+db-dump.json
+audit_*.txt
+*-out.txt
+.agents/
+ybb.code-workspace
+chatgpt api.txt
+*.log
+*.tmp

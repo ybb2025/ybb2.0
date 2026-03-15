@@ -3,6 +3,7 @@ import { Inter, Geist_Mono } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { StructuredData } from "@/components/structured-data";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,9 +19,32 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Your Brand Builders — Infrastructure Studio",
+  title: "Website & App Development Company | YourBrandBuilders",
   description:
-    "Custom digital infrastructure engineered from zero. No templates. No compromises. Built for scale.",
+    "Premium website and mobile app development (iOS & Android) based in Khammam, serving Hyderabad, Vijayawada, Vizag, and clients globally. Custom digital infrastructure with no templates.",
+  keywords: ["website development Hyderabad", "app development Vizag", "software company Vijayawada", "Khammam software company", "website design Telangana", "Andhra Pradesh web studio", "global website studio"],
+  authors: [{ name: "YourBrandBuilders" }],
+  openGraph: {
+    title: "YourBrandBuilders — Infrastructure Studio",
+    description: "Custom digital infrastructure engineered from zero. Built for scale.",
+    url: "https://yourbrandbuilders.com",
+    siteName: "YourBrandBuilders",
+    images: [
+      {
+        url: "/og-image.png", // Ensure this exists or suggest creating it
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "YourBrandBuilders — Infrastructure Studio",
+    description: "Custom digital infrastructure engineered from zero.",
+    images: ["/og-image.png"],
+  },
 };
 
 import { Spotlight } from "@/components/ui/Spotlight";
@@ -33,6 +57,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <StructuredData />
+      </head>
       <body
         className={`${inter.variable} ${geistMono.variable} antialiased`}
         style={{ backgroundColor: "var(--background)", transition: "background-color 0.3s ease" }}
